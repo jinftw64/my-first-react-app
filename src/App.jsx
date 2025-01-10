@@ -4,32 +4,39 @@ import viteLogo from '/vite.svg'
 import './App.css'
 
 function App() {
-  const [count, setCount] = useState(0)
+  const [person, setPerson] = useState({ firstName: "John", lastName: "Smith", age: 100 });
+  const fullName = `${person.firstName} ${person.lastName}`;
+
+  const handleIncreaseAge = () => {
+    const newPerson = { ...person, age: person.age + 1 };
+    setPerson(newPerson);
+  };
+
+  const handleFirstName = (e) => {
+    const newPerson = { ...person, firstName: e.target.value };
+    setPerson(newPerson);
+  }
+
+  const handleLastName = (e) => {
+    const newPerson = { ...person, lastName: e.target.value };
+    setPerson(newPerson);
+  }
 
   return (
     <>
-      <div>
-        <a href="https://vite.dev" target="_blank">
-          <img src={viteLogo} className="logo" alt="Vite logo" />
-        </a>
-        <a href="https://react.dev" target="_blank">
-          <img src={reactLogo} className="logo react" alt="React logo" />
-        </a>
-      </div>
-      <h1>Vite + React</h1>
-      <div className="card">
-        <button onClick={() => setCount((count) => count + 1)}>
-          count is {count}
-        </button>
-        <p>
-          Edit <code>src/App.jsx</code> and save to test HMR
-        </p>
-      </div>
-      <p className="read-the-docs">
-        Click on the Vite and React logos to learn more
-      </p>
+      <label>First name:</label>
+      <input type='test' id='fname' name='fname'
+        onChange={handleFirstName}
+      />
+      <label>Last name:</label>
+      <input type='test' id='lname' name='lname'
+        onChange={handleLastName}
+      />
+      <h1>{fullName}</h1>
+      <h2>{person.age}</h2>
+      <button onClick={handleIncreaseAge}>Increase age</button>
     </>
-  )
+  );
 }
 
 export default App
